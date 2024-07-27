@@ -81,7 +81,7 @@ void ShowVersionLine() {
 	if (runningInOverlay)
 	{
 		ImGui::SameLine();
-		ImGui::Text(u8"- ¹Ø±Õ VR µş¼Ó²ãÀ´Í¨¹ıÊó±ê²Ù¿Ø");
+		ImGui::Text(u8"- å…³é—­ VR å åŠ å±‚æ¥é€šè¿‡é¼ æ ‡æ“æ§");
 	}
 	ImGui::EndChild();
 }
@@ -93,7 +93,7 @@ void BuildContinuousCalDisplay() {
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::SetNextWindowSize(ImGui::GetWindowSize());
 	ImGui::SetNextWindowBgAlpha(1);
-	if (!ImGui::Begin(u8"Á¬ĞøĞ£×¼", nullptr,
+	if (!ImGui::Begin(u8"è¿ç»­æ ¡å‡†", nullptr,
 		bareWindowFlags & ~ImGuiWindowFlags_NoTitleBar
 	)) {
 		ImGui::End();
@@ -110,17 +110,17 @@ void BuildContinuousCalDisplay() {
 	}
 
 	if (ImGui::BeginTabBar("CCalTabs", 0)) {
-		if (ImGui::BeginTabItem(u8"×´Ì¬")) {
+		if (ImGui::BeginTabItem(u8"çŠ¶æ€")) {
 			CCal_BasicInfo();
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem(u8"ÏêÏ¸ĞÅÏ¢")) {
+		if (ImGui::BeginTabItem(u8"è¯¦ç»†ä¿¡æ¯")) {
 			ShowCalibrationDebug(2, 3);
 			ImGui::EndTabItem();
 		}
 		
-		if (ImGui::BeginTabItem(u8"ÉèÖÃ")) {
+		if (ImGui::BeginTabItem(u8"è®¾ç½®")) {
 			CCal_DrawSettings();
 			ImGui::EndTabItem();
 		}
@@ -166,8 +166,8 @@ void CCal_DrawSettings() {
 	// panel size for boxes
 	ImVec2 panel_size { ImGui::GetWindowContentRegionMax().x - ImGui::GetWindowContentRegionMin().x, 0 };
 
-	ImGui::BeginGroupPanel(u8"ÌáÊ¾", panel_size);
-	ImGui::Text(u8"½«Êó±êĞüÍ£ÔÚÉèÖÃÉÏÒÔÁË½â¸ü¶àĞÅÏ¢£¡");
+	ImGui::BeginGroupPanel(u8"æç¤º", panel_size);
+	ImGui::Text(u8"å°†é¼ æ ‡æ‚¬åœåœ¨è®¾ç½®ä¸Šä»¥äº†è§£æ›´å¤šä¿¡æ¯ï¼");
 	ImGui::EndGroupPanel();
 
 
@@ -175,26 +175,26 @@ void CCal_DrawSettings() {
 
 	// Section: Alignment speeds
 	{
-		ImGui::BeginGroupPanel(u8"Ğ£×¼ËÙ¶È", panel_size);
+		ImGui::BeginGroupPanel(u8"æ ¡å‡†é€Ÿåº¦", panel_size);
 
 		ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled));
 		ImGui::TextWrapped(
-			u8"¿Õ¼äĞ£×¼Æ÷ ÔÚ·¢ÉúÆ¯ÒÆÊ±Ê¹ÓÃ×î¶àÈıÖÖ²»Í¬µÄËÙ¶È½«Ğ£×¼ÍÏ»Øµ½ÕıÈ·Î»ÖÃ¡£ÕâĞ©ÉèÖÃ¿ØÖÆĞ£×¼Æ«Àë¶àÔ¶Ê±Ó¦Ñ¡ÔñÄÄÖÖĞ£×¼ËÙ¶È£¬¸üÂı£¨Decel£©»¹ÊÇ¸ü¿ì£¨Fast£©¡£"
-			//"»»ĞĞ"
+			u8"ç©ºé—´æ ¡å‡†å™¨ åœ¨å‘ç”Ÿæ¼‚ç§»æ—¶ä½¿ç”¨æœ€å¤šä¸‰ç§ä¸åŒçš„é€Ÿåº¦å°†æ ¡å‡†æ‹–å›åˆ°æ­£ç¡®ä½ç½®ã€‚è¿™äº›è®¾ç½®æ§åˆ¶æ ¡å‡†åç¦»å¤šè¿œæ—¶åº”é€‰æ‹©å“ªç§æ ¡å‡†é€Ÿåº¦ï¼Œæ›´æ…¢ï¼ˆDecelï¼‰è¿˜æ˜¯æ›´å¿«ï¼ˆFastï¼‰ã€‚"
+			//"æ¢è¡Œ"
 		);
 		ImGui::PopStyleColor();
 
 		if (ImGui::BeginTable("SpeedThresholds", 3, 0)) {
 			ImGui::TableNextRow();
 			ImGui::TableSetColumnIndex(1);
-			ImGui::Text(u8"Î»ÖÃ (mm)");
+			ImGui::Text(u8"ä½ç½® (mm)");
 			ImGui::TableSetColumnIndex(2);
-			ImGui::Text(u8"Ğı×ª (degrees)");
+			ImGui::Text(u8"æ—‹è½¬ (degrees)");
 
 
 			ImGui::TableNextRow();
 			ImGui::TableSetColumnIndex(0);
-			ImGui::Text(u8"¸üÂı");
+			ImGui::Text(u8"æ›´æ…¢");
 			ImGui::TableSetColumnIndex(1);
 			ScaledDragFloat("##TransDecel", CalCtx.alignmentSpeedParams.thr_trans_tiny, 1000.0, 0, 20.0);
 			ImGui::TableSetColumnIndex(2);
@@ -202,7 +202,7 @@ void CCal_DrawSettings() {
 
 			ImGui::TableNextRow();
 			ImGui::TableSetColumnIndex(0);
-			ImGui::Text(u8"Âı");
+			ImGui::Text(u8"æ…¢");
 			ImGui::TableSetColumnIndex(1);
 			ScaledDragFloat("##TransSlow", CalCtx.alignmentSpeedParams.thr_trans_small, 1000.0,
 				CalCtx.alignmentSpeedParams.thr_trans_tiny * 1000.0, 20.0);
@@ -212,7 +212,7 @@ void CCal_DrawSettings() {
 
 			ImGui::TableNextRow();
 			ImGui::TableSetColumnIndex(0);
-			ImGui::Text(u8"¿ì");
+			ImGui::Text(u8"å¿«");
 			ImGui::TableSetColumnIndex(1);
 			ScaledDragFloat("##TransFast", CalCtx.alignmentSpeedParams.thr_trans_large, 1000.0,
 				CalCtx.alignmentSpeedParams.thr_trans_small * 1000.0, 50.0);
@@ -228,13 +228,13 @@ void CCal_DrawSettings() {
 
 	// Section: Alignment speeds
 	{
-		ImGui::BeginGroupPanel(u8"¶ÔÆëËÙ¶È", panel_size);
+		ImGui::BeginGroupPanel(u8"å¯¹é½é€Ÿåº¦", panel_size);
 
 		// ImGui::Separator();
 		// ImGui::Text("Alignment speeds");
-		ScaledDragFloat(u8"¸üÂı", CalCtx.alignmentSpeedParams.align_speed_tiny, 1.0, 0, 2.0, 0);
-		ScaledDragFloat(u8"Âı", CalCtx.alignmentSpeedParams.align_speed_small, 1.0, 0, 2.0, 0);
-		ScaledDragFloat(u8"¿ì", CalCtx.alignmentSpeedParams.align_speed_large, 1.0, 0, 2.0, 0);
+		ScaledDragFloat(u8"æ›´æ…¢", CalCtx.alignmentSpeedParams.align_speed_tiny, 1.0, 0, 2.0, 0);
+		ScaledDragFloat(u8"æ…¢", CalCtx.alignmentSpeedParams.align_speed_small, 1.0, 0, 2.0, 0);
+		ScaledDragFloat(u8"å¿«", CalCtx.alignmentSpeedParams.align_speed_large, 1.0, 0, 2.0, 0);
 		
 		ImGui::EndGroupPanel();
 	}
@@ -242,27 +242,27 @@ void CCal_DrawSettings() {
 
 	// Section: Continuous Calibration settings
 	{
-		ImGui::BeginGroupPanel(u8"Á¬ĞøĞ£×¼", panel_size);
+		ImGui::BeginGroupPanel(u8"è¿ç»­æ ¡å‡†", panel_size);
 
 		{
 			// @TODO: Reduce code duplication (tooltips)
 			// Recalibration threshold
-			ImGui::Text(u8"ÖØĞÂĞ£×¼´¥·¢ãĞÖµ");
+			ImGui::Text(u8"é‡æ–°æ ¡å‡†è§¦å‘é˜ˆå€¼");
 			ImGui::SameLine();
 			ImGui::PushID("recalibration_threshold");
 			ImGui::SliderFloat("##recalibration_threshold_slider", &CalCtx.continuousCalibrationThreshold, 1.01f, 10.0f, "%1.1f", 0);
 			if (ImGui::IsItemHovered(0)) {
-				ImGui::SetTooltip(u8"ÓÃÓÚµ÷ÕûÔÚÖØĞÂ¶ÔÆë¸ú×ÙÆ÷Ö®Ç°£¬Ğ£×¼±ØĞë´ïµ½µÄ×¼È·¶È¡£\n"
-					u8"¸ü¸ßµÄÖµ»á½µµÍĞ£×¼·¢ÉúµÄÆµÂÊ£¬Õâ¿ÉÄÜ¶Ô¾ßÓĞ½Ï´ó¸ú×ÙÆ¯ÒÆµÄÏµÍ³ÓĞ°ïÖú¡£");
+				ImGui::SetTooltip(u8"ç”¨äºè°ƒæ•´åœ¨é‡æ–°å¯¹é½è·Ÿè¸ªå™¨ä¹‹å‰ï¼Œæ ¡å‡†å¿…é¡»è¾¾åˆ°çš„å‡†ç¡®åº¦ã€‚\n"
+					u8"æ›´é«˜çš„å€¼ä¼šé™ä½æ ¡å‡†å‘ç”Ÿçš„é¢‘ç‡ï¼Œè¿™å¯èƒ½å¯¹å…·æœ‰è¾ƒå¤§è·Ÿè¸ªæ¼‚ç§»çš„ç³»ç»Ÿæœ‰å¸®åŠ©ã€‚");
 			}
 			ImGui::PopID();
 
 			ImGui::PushStyleColor(ImGuiCol_Text, ImGui::GetStyleColorVec4(ImGuiCol_TextDisabled));
-			ImGui::TextWrapped(u8"¿ØÖÆ ¿Õ¼äĞ£×¼Æ÷ Í¬²½ÓÎÏ·¿Õ¼äµÄÆµÂÊ¡£");
+			ImGui::TextWrapped(u8"æ§åˆ¶ ç©ºé—´æ ¡å‡†å™¨ åŒæ­¥æ¸¸æˆç©ºé—´çš„é¢‘ç‡ã€‚");
 			ImGui::PopStyleColor();
 			if (ImGui::IsItemHovered(0)) {
-				ImGui::SetTooltip(u8"ÓÃÓÚµ÷ÕûÔÚÖØĞÂ¶ÔÆë¸ú×ÙÆ÷Ö®Ç°£¬Ğ£×¼±ØĞë´ïµ½µÄ×¼È·¶È¡£\n"
-					u8"¸ü¸ßµÄÖµ»á½µµÍĞ£×¼·¢ÉúµÄÆµÂÊ£¬Õâ¿ÉÄÜ¶Ô¾ßÓĞ½Ï´ó¸ú×ÙÆ¯ÒÆµÄÏµÍ³ÓĞ°ïÖú¡£");
+				ImGui::SetTooltip(u8"ç”¨äºè°ƒæ•´åœ¨é‡æ–°å¯¹é½è·Ÿè¸ªå™¨ä¹‹å‰ï¼Œæ ¡å‡†å¿…é¡»è¾¾åˆ°çš„å‡†ç¡®åº¦ã€‚\n"
+					u8"æ›´é«˜çš„å€¼ä¼šé™ä½æ ¡å‡†å‘ç”Ÿçš„é¢‘ç‡ï¼Œè¿™å¯èƒ½å¯¹å…·æœ‰è¾ƒå¤§è·Ÿè¸ªæ¼‚ç§»çš„ç³»ç»Ÿæœ‰å¸®åŠ©ã€‚");
 			}
 		}
 
@@ -270,7 +270,7 @@ void CCal_DrawSettings() {
 			// Tracker offset
 			// ImVec2 panel_size_inner { ImGui::GetCurrentWindow()->DC.ItemWidth, 0};
 			ImVec2 panel_size_inner { panel_size.x - 11 * 2, 0};
-			ImGui::BeginGroupPanel(u8"×·×ÙÆ÷Æ«ÒÆ", panel_size_inner);
+			ImGui::BeginGroupPanel(u8"è¿½è¸ªå™¨åç§»", panel_size_inner);
 			DrawVectorElement("cc_tracker_offset", "X", &CalCtx.continuousCalibrationOffset.x());
 			DrawVectorElement("cc_tracker_offset", "Y", &CalCtx.continuousCalibrationOffset.y());
 			DrawVectorElement("cc_tracker_offset", "Z", &CalCtx.continuousCalibrationOffset.z());
@@ -280,8 +280,8 @@ void CCal_DrawSettings() {
 		{
 			// Playspace offset
 			ImVec2 panel_size_inner{ panel_size.x - 11 * 2, 0 };
-			ImGui::BeginGroupPanel(u8"ÓÎÍæ¿Õ¼äËõ·Å", panel_size_inner);
-			DrawVectorElement("cc_playspace_scale", u8"ÓÎÍæ¿Õ¼äËõ·Å", &CalCtx.calibratedScale);
+			ImGui::BeginGroupPanel(u8"æ¸¸ç©ç©ºé—´ç¼©æ”¾", panel_size_inner);
+			DrawVectorElement("cc_playspace_scale", u8"æ¸¸ç©ç©ºé—´ç¼©æ”¾", &CalCtx.calibratedScale);
 			ImGui::EndGroupPanel();
 		}
 
@@ -290,7 +290,7 @@ void CCal_DrawSettings() {
 
 	ImGui::NewLine();
 	ImGui::Indent();
-	if (ImGui::Button(u8"ÖØÖÃÉèÖÃ")) {
+	if (ImGui::Button(u8"é‡ç½®è®¾ç½®")) {
 		CalCtx.ResetConfig();
 	}
 	ImGui::Unindent();
@@ -298,7 +298,7 @@ void CCal_DrawSettings() {
 
 	// Section: Contributors credits
 	{
-		ImGui::BeginGroupPanel("×÷Õß", panel_size);
+		ImGui::BeginGroupPanel("ä½œè€…", panel_size);
 
 		ImGui::TextDisabled("tach");
 		ImGui::TextDisabled("pushrax");
@@ -341,8 +341,8 @@ void DrawVectorElement(std::string id, const char* text, double* value) {
 
 void CCal_BasicInfo() {
 	if (ImGui::BeginTable("DeviceInfo", 2, 0)) {
-		ImGui::TableSetupColumn(u8"Ö÷Éè±¸");
-		ImGui::TableSetupColumn(u8"Ä¿±êÉè±¸");
+		ImGui::TableSetupColumn(u8"ä¸»è®¾å¤‡");
+		ImGui::TableSetupColumn(u8"ç›®æ ‡è®¾å¤‡");
 		ImGui::TableHeadersRow();
 
 		ImGui::TableNextRow();
@@ -356,16 +356,16 @@ void CCal_BasicInfo() {
 		const char* status;
 		if (CalCtx.referenceID < 0) {
 			ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, 0xFF000080);
-			status = u8"Î´Á¬½Ó";
+			status = u8"æœªè¿æ¥";
 		}
 		else if (!CalCtx.ReferencePoseIsValid()) {
 			ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, 0xFFFF0080);
-			status = u8"Î´ÔÚ×·×Ù";
+			status = u8"æœªåœ¨è¿½è¸ª";
 		}
 		else {
-			status = u8"×¼±¸¾ÍĞ÷";
+			status = u8"å‡†å¤‡å°±ç»ª";
 		}
-		ImGui::Text(u8"×´Ì¬£º %s", status);
+		ImGui::Text(u8"çŠ¶æ€ï¼š %s", status);
 		ImGui::EndGroup();
 
 		ImGui::TableSetColumnIndex(1);
@@ -377,16 +377,16 @@ void CCal_BasicInfo() {
 		);
 		if (CalCtx.targetID < 0) {
 			ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, 0xFF000080);
-			status = u8"Î´Á¬½Ó";
+			status = u8"æœªè¿æ¥";
 		}
 		else if (!CalCtx.TargetPoseIsValid()) {
 			ImGui::TableSetBgColor(ImGuiTableBgTarget_CellBg, 0xFFFF0080);
-			status = u8"Î´ÔÚ×·×Ù";
+			status = u8"æœªåœ¨è¿½è¸ª";
 		}
 		else {
-			status = u8"×¼±¸¾ÍĞ÷";
+			status = u8"å‡†å¤‡å°±ç»ª";
 		}
-		ImGui::Text(u8"×´Ì¬£º %s", status);
+		ImGui::Text(u8"çŠ¶æ€ï¼š %s", status);
 		ImGui::EndGroup();
 
 		ImGui::EndTable();
@@ -397,18 +397,18 @@ void CCal_BasicInfo() {
 	if (ImGui::BeginTable("##CCal_Cancel", Metrics::enableLogs ? 3 : 2, 0, ImVec2(width * scale, ImGui::GetTextLineHeight() * 2))) {
 		ImGui::TableNextRow();
 		ImGui::TableSetColumnIndex(0);
-		if (ImGui::Button(u8"È¡ÏûÁ¬ĞøĞ£×¼", ImVec2(-FLT_MIN, 0.0f))) {
+		if (ImGui::Button(u8"å–æ¶ˆè¿ç»­æ ¡å‡†", ImVec2(-FLT_MIN, 0.0f))) {
 			EndContinuousCalibration();
 		}
 
 		ImGui::TableSetColumnIndex(1);
-		if (ImGui::Button(u8"µ÷ÊÔ£ºÇ¿ÖÆÖØÖÃĞ£×¼", ImVec2(-FLT_MIN, 0.0f))) {
+		if (ImGui::Button(u8"è°ƒè¯•ï¼šå¼ºåˆ¶é‡ç½®æ ¡å‡†", ImVec2(-FLT_MIN, 0.0f))) {
 			DebugApplyRandomOffset();
 		}
 
 		if (Metrics::enableLogs) {
 			ImGui::TableSetColumnIndex(2);
-			if (ImGui::Button(u8"µ÷ÊÔ£º±ê¼ÇÈÕÖ¾", ImVec2(-FLT_MIN, 0.0f))) {
+			if (ImGui::Button(u8"è°ƒè¯•ï¼šæ ‡è®°æ—¥å¿—", ImVec2(-FLT_MIN, 0.0f))) {
 				Metrics::WriteLogAnnotation("MARK LOGS");
 			}
 		}
@@ -416,15 +416,15 @@ void CCal_BasicInfo() {
 		ImGui::EndTable();
 	}
 
-	ImGui::Checkbox(u8"Òş²Ø»ì´î×·×ÙÆ÷", &CalCtx.quashTargetInContinuous);
+	ImGui::Checkbox(u8"éšè—æ··æ­è¿½è¸ªå™¨", &CalCtx.quashTargetInContinuous);
 	ImGui::SameLine();
-	ImGui::Checkbox(u8"±£³Ö×Ô¶¯Ğ£×¼", &CalCtx.enableStaticRecalibration);
+	ImGui::Checkbox(u8"ä¿æŒè‡ªåŠ¨æ ¡å‡†", &CalCtx.enableStaticRecalibration);
 	ImGui::SameLine();
-	ImGui::Checkbox(u8"Êä³öÈÕÖ¾", &Metrics::enableLogs);
+	ImGui::Checkbox(u8"è¾“å‡ºæ—¥å¿—", &Metrics::enableLogs);
 	ImGui::SameLine();
-	ImGui::Checkbox(u8"Ëø¶¨Ïà¶ÔÎ»ÖÃ", &CalCtx.lockRelativePosition);
+	ImGui::Checkbox(u8"é”å®šç›¸å¯¹ä½ç½®", &CalCtx.lockRelativePosition);
 	ImGui::SameLine();
-	ImGui::Checkbox(u8"°´×¡×óÓÒ°â»ú¼ÌĞøĞ£×¼", &CalCtx.requireTriggerPressToApply);
+	ImGui::Checkbox(u8"æŒ‰ä½å·¦å³æ‰³æœºç»§ç»­æ ¡å‡†", &CalCtx.requireTriggerPressToApply);
 
 	// Status field...
 
@@ -451,7 +451,7 @@ void BuildMenu(bool runningInOverlay)
 	{
 		if (CalCtx.validProfile && !CalCtx.enabled)
 		{
-			ImGui::TextColored(ImVec4(0.8f, 0.2f, 0.2f, 1), u8"Ö÷ÒªÍ·´÷Éè±¸ (%s) Î´ÕÒµ½£¬ÅäÖÃÎÄ¼şÒÑ½ûÓÃ", CalCtx.referenceTrackingSystem.c_str());
+			ImGui::TextColored(ImVec4(0.8f, 0.2f, 0.2f, 1), u8"ä¸»è¦å¤´æˆ´è®¾å¤‡ (%s) æœªæ‰¾åˆ°ï¼Œé…ç½®æ–‡ä»¶å·²ç¦ç”¨", CalCtx.referenceTrackingSystem.c_str());
 			ImGui::Text("");
 		}
 
@@ -462,27 +462,27 @@ void BuildMenu(bool runningInOverlay)
 			scale = 1.0f / 4.0f;
 		}
 
-		if (ImGui::Button(u8"¿ªÊ¼Ğ£×¼", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
+		if (ImGui::Button(u8"å¼€å§‹æ ¡å‡†", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
 		{
 			ImGui::OpenPopup("Calibration Progress");
 			StartCalibration();
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button(u8"Á¬ĞøĞ£×¼", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2))) {
+		if (ImGui::Button(u8"è¿ç»­æ ¡å‡†", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2))) {
 			StartContinuousCalibration();
 		}
 
 		if (CalCtx.validProfile)
 		{
 			ImGui::SameLine();
-			if (ImGui::Button(u8"±à¼­Ğ£×¼", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
+			if (ImGui::Button(u8"ç¼–è¾‘æ ¡å‡†", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
 			{
 				CalCtx.state = CalibrationState::Editing;
 			}
 
 			ImGui::SameLine();
-			if (ImGui::Button(u8"Çå³ıĞ£×¼", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
+			if (ImGui::Button(u8"æ¸…é™¤æ ¡å‡†", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
 			{
 				CalCtx.Clear();
 				SaveProfile(CalCtx);
@@ -498,7 +498,7 @@ void BuildMenu(bool runningInOverlay)
 		}
 
 		ImGui::Text("");
-		if (ImGui::Button(u8"½« Chaperone ±ß½çĞÅÏ¢¸´ÖÆµ½ÅäÖÃÎÄ¼ş", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
+		if (ImGui::Button(u8"å°† Chaperone è¾¹ç•Œä¿¡æ¯å¤åˆ¶åˆ°é…ç½®æ–‡ä»¶", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
 		{
 			LoadChaperoneBounds();
 			SaveProfile(CalCtx);
@@ -507,12 +507,12 @@ void BuildMenu(bool runningInOverlay)
 		if (CalCtx.chaperone.valid)
 		{
 			ImGui::SameLine();
-			if (ImGui::Button(u8"Õ³Ìù Chaperone ±ß½ç", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
+			if (ImGui::Button(u8"ç²˜è´´ Chaperone è¾¹ç•Œ", ImVec2(width * scale, ImGui::GetTextLineHeight() * 2)))
 			{
 				ApplyChaperoneBounds();
 			}
 
-			if (ImGui::Checkbox(u8" ÔÚ¼¸ºÎÌåÖØÖÃÊ±×Ô¶¯Õ³Ìù Chaperone ±ß½ç", &CalCtx.chaperone.autoApply))
+			if (ImGui::Checkbox(u8" åœ¨å‡ ä½•ä½“é‡ç½®æ—¶è‡ªåŠ¨ç²˜è´´ Chaperone è¾¹ç•Œ", &CalCtx.chaperone.autoApply))
 			{
 				SaveProfile(CalCtx);
 			}
@@ -522,18 +522,18 @@ void BuildMenu(bool runningInOverlay)
 		auto speed = CalCtx.calibrationSpeed;
 
 		ImGui::Columns(4, NULL, false);
-		ImGui::Text(u8"Ğ£×¼ËÙ¶È");
+		ImGui::Text(u8"æ ¡å‡†é€Ÿåº¦");
 
 		ImGui::NextColumn();
-		if (ImGui::RadioButton(u8" ¿ì           ", speed == CalibrationContext::FAST))
+		if (ImGui::RadioButton(u8" å¿«           ", speed == CalibrationContext::FAST))
 			CalCtx.calibrationSpeed = CalibrationContext::FAST;
 
 		ImGui::NextColumn();
-		if (ImGui::RadioButton(u8" Âı           ", speed == CalibrationContext::SLOW))
+		if (ImGui::RadioButton(u8" æ…¢           ", speed == CalibrationContext::SLOW))
 			CalCtx.calibrationSpeed = CalibrationContext::SLOW;
 
 		ImGui::NextColumn();
-		if (ImGui::RadioButton(u8" ³¬Âı     ", speed == CalibrationContext::VERY_SLOW))
+		if (ImGui::RadioButton(u8" è¶…æ…¢     ", speed == CalibrationContext::VERY_SLOW))
 			CalCtx.calibrationSpeed = CalibrationContext::VERY_SLOW;
 
 		ImGui::Columns(1);
@@ -542,7 +542,7 @@ void BuildMenu(bool runningInOverlay)
 	{
 		BuildProfileEditor();
 
-		if (ImGui::Button(u8"±£´æÅäÖÃÎÄ¼ş", ImVec2(ImGui::GetWindowContentRegionWidth(), ImGui::GetTextLineHeight() * 2)))
+		if (ImGui::Button(u8"ä¿å­˜é…ç½®æ–‡ä»¶", ImVec2(ImGui::GetWindowContentRegionWidth(), ImGui::GetTextLineHeight() * 2)))
 		{
 			SaveProfile(CalCtx);
 			CalCtx.state = CalibrationState::None;
@@ -550,7 +550,7 @@ void BuildMenu(bool runningInOverlay)
 	}
 	else
 	{
-		ImGui::Button("Ğ£×¼½øĞĞÖĞ...", ImVec2(ImGui::GetWindowContentRegionWidth(), ImGui::GetTextLineHeight() * 2));
+		ImGui::Button("æ ¡å‡†è¿›è¡Œä¸­...", ImVec2(ImGui::GetWindowContentRegionWidth(), ImGui::GetTextLineHeight() * 2));
 	}
 
 	ImGui::SetNextWindowPos(ImVec2(20.0f, 20.0f), ImGuiCond_Always);
@@ -598,9 +598,9 @@ void BuildSystemSelection(const VRState &state)
 	ImGuiStyle &style = ImGui::GetStyle();
 	float paneWidth = ImGui::GetWindowContentRegionWidth() / 2 - style.FramePadding.x;
 
-	TextWithWidth("ReferenceSystemLabel", u8"Ö÷Éè±¸", paneWidth);
+	TextWithWidth("ReferenceSystemLabel", u8"ä¸»è®¾å¤‡", paneWidth);
 	ImGui::SameLine();
-	TextWithWidth("TargetSystemLabel", u8"Ä¿±êÉè±¸", paneWidth);
+	TextWithWidth("TargetSystemLabel", u8"ç›®æ ‡è®¾å¤‡", paneWidth);
 
 	int currentReferenceSystem = -1;
 	int currentTargetSystem = -1;
@@ -717,7 +717,7 @@ std::string LabelString(const StandbyDevice& device) {
 void BuildDeviceSelection(const VRState &state, int &initialSelected, const std::string &system, StandbyDevice &standbyDevice)
 {
 	int selected = initialSelected;
-	ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1), u8"Éè±¸ÀàĞÍ£º %s", system.c_str());
+	ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1), u8"è®¾å¤‡ç±»å‹ï¼š %s", system.c_str());
 
 	if (selected != -1)
 	{
@@ -825,7 +825,7 @@ void BuildDeviceSelections(const VRState &state)
 	BuildDeviceSelection(state, CalCtx.targetID, CalCtx.targetTrackingSystem, CalCtx.targetStandby);
 	ImGui::EndChild();
 
-	if (ImGui::Button(u8"±êÊ¶Ñ¡¶¨µÄÉè±¸£¨LEDÉÁË¸»òÕñ¶¯£©", ImVec2(ImGui::GetWindowContentRegionWidth(), ImGui::GetTextLineHeightWithSpacing() + 4.0f)))
+	if (ImGui::Button(u8"æ ‡è¯†é€‰å®šçš„è®¾å¤‡ï¼ˆLEDé—ªçƒæˆ–æŒ¯åŠ¨ï¼‰", ImVec2(ImGui::GetWindowContentRegionWidth(), ImGui::GetTextLineHeightWithSpacing() + 4.0f)))
 	{
 		for (unsigned i = 0; i < 100; ++i)
 		{
